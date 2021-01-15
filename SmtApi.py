@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Tuple, Dict, Optional
 from session import SmtApiSession
-import exceptions
+from exceptions import handle_error_response
 
 
 class SmtApi(object):
