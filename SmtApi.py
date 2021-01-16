@@ -1,3 +1,4 @@
+from datetime import strftime
 import datetime
 from typing import Any, Tuple, Dict, Optional
 from session import SmtApiSession
@@ -63,6 +64,7 @@ class SmtApi(object):
         return resp.json()#['result']
 
     # url helper
+    @property
     def _url(self, path):
         return self.host + '/{:d}/'.format(path)
 
