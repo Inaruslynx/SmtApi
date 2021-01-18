@@ -1,4 +1,7 @@
-from datetime import strftime
+""" 
+Programmer: Joshua Edwards
+Purpose: Provide interface with SmartMeterTexas.com. Provide a way to quickly pull meter reads and data.
+ """
 import datetime
 from typing import Any, Tuple, Dict, Optional
 from session import SmtApiSession
@@ -24,15 +27,26 @@ class SmtApi(object):
         self.pwd = pwd
         ####################
         self.host = host
+        self.url = ''
         self.esiid = esiid
         self.id = 0
         # Initialize the session.
         self.session = SmtApiSession()
         self.session.init_basic_auth(user, pwd, cert)
 
+    # url property
+    @property
+    def url(self):
+        return self.__url
+
+    #url setter
+    @url.setter
+    def url(self, path:str):
+        self.__url = self.host + '/{:d}/'.format(path)
+
     # Perform an API request.
     def _request(self, method: str, params: Dict[str, str], type='RES', deliveryMode='XML') -> Any:
-        url = self._url(method)
+        self.url = method
         # shared param off 3 defined methods
         data = {
             'trans_id': str(self.id),
@@ -46,12 +60,12 @@ class SmtApi(object):
         if params:
             data.update(params)
         else:
-            # TODO: error and need to handle
+            # TODO: need to handle error
             pass
 
         # Ask the session to perform a JSON-RPC request
         # with the parameters provided.
-        resp = self.session.request('POST', url, json=data)
+        resp = self.session.request('POST', self.url, json=data)
 
         # If something goes wrong, we'll pass the response
         # off to the error-handling code
@@ -63,10 +77,7 @@ class SmtApi(object):
         # ['result'] came from example code used I'm not sure if it's requires as returning whole json seems appropriate
         return resp.json()#['result']
 
-    # url helper
-    @property
-    def _url(self, path):
-        return self.host + '/{:d}/'.format(path)
+
 
     # API methods
     # all methods require 'startDate' and 'endDate'
