@@ -3,7 +3,7 @@ Programmer: Joshua Edwards
 Purpose: Provide interface with SmartMeterTexas.com. Provide a way to quickly pull meter reads and data.
  """
 import datetime
-from typing import Any, Mapping, Tuple, Dict, Optional
+from typing import Mapping, Tuple, Optional
 from session import SmtApiSession
 from exceptions import handle_error_response
 
