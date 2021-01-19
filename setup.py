@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="SmtApi", # Replace with your own username
-    version="v0.1-alpha",
+    version="v0.1.3-alpha",
     author="Joshua Edwards",
     author_email="joshua.edwards.navy@gmail.com",
     description="An API for SmartMeterTexas",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/Inaruslynx/SmtApi",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
