@@ -18,7 +18,7 @@ class SmtApi(object):
             pwd (str): password for API log in as given by SMT for API development
             cert (Tuple[str, str]): location to certification and key file as strings
             esiid (str): esiid associated with account a string of numbers
-            host (str): base of API to be joined to API functions
+            Test (bool): changes host if using test API
          """
         ####################
         # may not need to retain
