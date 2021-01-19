@@ -10,7 +10,7 @@ from exceptions import handle_error_response
 
 class SmtApi(object):
 
-    def __init__(self, user: str, pwd: str, cert: Tuple[str, str], esiid: str, host='https://services.smartmetertexas.net') -> None:
+    def __init__(self, user: str, pwd: str, cert: Tuple[str, str], esiid: str, Test=False) -> None:
         """ 
         Instantiate a new API client.
         Args:
@@ -26,6 +26,10 @@ class SmtApi(object):
         self.user = user
         self.pwd = pwd
         ####################
+        if Test == True:
+            host = 'https://uatservices.smartmetertexas.net'
+        else:
+            host = 'https://services.smartmetertexas.net'
         self.host = host
         self.url = ''
         self.esiid = esiid
