@@ -3,6 +3,7 @@ Programmer: Joshua Edwards
 Purpose: Provide interface with SmartMeterTexas.com. Provide a way to quickly pull meter reads and data.
  """
 import datetime
+import re
 from typing import Mapping, Tuple, Optional
 from session import SmtApiSession
 from exceptions import handle_error_response
@@ -83,10 +84,24 @@ class SmtApi(object):
 
     # 15 Minute Interval Reads (pg 18 of SmartMeterTexas pdf)
 
-    def min_interval_reads(self, startDate: datetime, endDate: datetime, params: Optional[Mapping[str, str]] = None, ver='L', readingType='C') -> Mapping[str, str]:
+    def min_interval_reads(self, startDate: datetime, endDate: datetime, params: Optional[Mapping[str, str]] = None, ver='L', readingType='C') -> Mapping[str, list[float]]:
+        """ 
+        Returns 15-minute interval reads from starting date to ending date.
+        """ 
+        """
+        1st: Format dates and test not today
+        2nd: Build json
+        3rd: Make request
+        4th: Parse data and return as Dict[str, list] list of floats
+         """
+        # 1st
         # format dates as a string: mm/dd/yyyy
+        today = datetime.date.today().strftime("%m/%d/%Y")
         startDate = startDate.strftime("%m/%d/%Y")
         endDate = endDate.strftime("%m/%d/%Y")
+        if today == startDate or today == endDate:
+            raise ValueError('May not use today with this function')
+        # 2nd
         # required params
         data = {
             'version': ver,
@@ -97,11 +112,28 @@ class SmtApi(object):
         # optional params
         if params:
             data.update(params)
+        # 3rd
         # call _request function which will then return a json
-        return self._request('15minintervalreads', data)
+        response = self._request('15minintervalreads', data)
+        # 4th
+        energyData = response['energyData']
+        parsedData = {}
+        days = []
+        for eachday in energyData:
+            days.append(eachday['DT'])
+            parsedData[eachday['DT']] = eachday['RD'].rsplit(',')
+        # Recommend https://pythex.org/ for testing patterns
+        pattern = '[^aAeE-]'
+        for eachDay in days:
+            for eachReading in parsedData[eachDay]:
+                eachReading = float(re.findall(pattern, eachReading))
+        return parsedData
 
     # Daily Reads (pg 25 of SMT pdf)
     def daily_reads(self, startDate: datetime, endDate: datetime, params: Optional[Mapping[str, str]] = None, ver='L', readingType='C') -> Mapping[str, str]:
+        """ 
+        Returns daily reads from start date to end date
+        """
         # format dates as a string: mm/dd/yyyy
         startDate = startDate.strftime("%m/%d/%Y")
         endDate = endDate.strftime("%m/%d/%Y")
