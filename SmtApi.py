@@ -27,10 +27,9 @@ class SmtApi(object):
         self.pwd = pwd
         ####################
         if Test == True:
-            host = 'https://uatservices.smartmetertexas.net'
+           self.host = 'https://uatservices.smartmetertexas.net'
         else:
-            host = 'https://services.smartmetertexas.net'
-        self.host = host
+            self.host = 'https://services.smartmetertexas.net'
         self.url = ''
         self.esiid = esiid
         self.id = 0
