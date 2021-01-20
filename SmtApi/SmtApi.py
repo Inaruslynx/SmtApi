@@ -17,7 +17,7 @@ class SmtApi(object):
         Args:
             user (str): username for API log in as given by SMT for API development
             pwd (str): password for API log in as given by SMT for API development
-            cert (Tuple[str, str]): location to certification and key file as strings
+            cert (Tuple[str, str]): location to certification and key file as strings. order: (cert, key)
             esiid (str): esiid associated with account a string of numbers
             Test (bool): changes host if using test API
          """
