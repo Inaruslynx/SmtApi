@@ -14,10 +14,11 @@ def main():
         data = json.load(f)
     example = SmtApi(data['user'], data['pass'],
                      (pathcert, pathkey), data['esiid'], Test=True)
-    powerData = example.min_interval_reads(startDate,endDate)
-    for index, day in enumerate(powerData):
-        print("day:", day[index])
-    pass
+    powerData = example.min_interval_reads(startDate, endDate)
+    days = powerData.keys()
+    for day in days:
+        print("day:", day)
+        print("power usage every 15 minutes:", powerData[day])
 
 
 if __name__ == "__main__":
