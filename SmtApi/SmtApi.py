@@ -130,7 +130,7 @@ class SmtApi(object):
         return parsedData
 
     # Daily Reads (pg 25 of SMT pdf)
-    def daily_reads(self, startDate: datetime, endDate: datetime, params: Optional[Mapping[str, str]] = None, ver='L', readingType='C') -> Mapping[str, str]:
+    def daily_reads(self, startDate: datetime, endDate: datetime, params: Optional[Mapping[str, str]] = None, ver='L', readingType='C') -> Mapping[str, list[float]]:
         """ 
         Returns daily reads from start date to end date
         """
@@ -148,7 +148,12 @@ class SmtApi(object):
         if params:
             data.update(params)
         # call _request function which will then return a json
-        return self._request('dailyreads', data)
+        response =  self._request('dailyreads', data)
+        energyData = response['registeredReads']
+        parsedData = {}
+        for day in energyData:
+            parsedData[day['readDate']] = float(day['energyDataKwh'])
+        return parsedData
 
     # On-Demand Read (pg 56 of SMT pdf)
     # This is the most complicated
