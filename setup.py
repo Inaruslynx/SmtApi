@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="SmtApi", # Replace with your own username
-    version="v0.1.5-alpha",
+    version="v0.1.5a1",
     author="Joshua Edwards",
     author_email="joshua.edwards.navy@gmail.com",
     description="An API for SmartMeterTexas",
