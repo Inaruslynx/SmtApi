@@ -1,22 +1,49 @@
-import setuptools
+#!/usr/bin/env python
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+"""The setup script."""
 
-setuptools.setup(
-    name="SmtApi", # Replace with your own username
-    version="v0.1.5a1",
+from setuptools import setup, find_packages
+
+with open("README.md", "r", encoding="utf-8") as readme_file:
+    readme = readme_file.read()
+
+# with open('HISTORY.rst') as history_file:
+#     history = history_file.read()
+
+requirements = [ ]
+
+setup_requirements = [ ]
+
+test_requirements = [ ]
+
+setup(
     author="Joshua Edwards",
-    author_email="joshua.edwards.navy@gmail.com",
-    description="An API for SmartMeterTexas",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/Inaruslynx/SmtApi",
-    packages=setuptools.find_packages(),
+    author_email='joshua.edwards.navy@gmail.com',
+    python_requires='>=3.5',
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
-    python_requires='>=3.6',
+    description="An API for SmartMeterTexas",
+    install_requires=requirements,
+    license="MIT license",
+    long_description=readme,# + '\n\n' + history,
+    long_description_content_type="text/markdown",
+    include_package_data=True,
+    keywords='smtapi',
+    name='smtapi',
+    packages=find_packages(include=['smtapi', 'smtapi.*']),
+    setup_requires=setup_requirements,
+    test_suite='tests',
+    tests_require=test_requirements,
+    url='https://github.com/Inaruslynx/smtapi',
+    version='0.1.6a0',
+    zip_safe=False,
 )

@@ -131,3 +131,4 @@ dmypy.json
 
 # Other
 *.json
+.travis.yml
