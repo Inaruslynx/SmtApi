@@ -11,7 +11,10 @@ python:
 #install: pip install -U requests 
 
 # Command to run tests, e.g. python setup.py test
-script: pytest #tox
+script: 
+  - if [[ -n "$TOX_ENV" ]]; then tox -e $TOX_ENV -- $TOX_ARGS; fi
+  - if [[ -n "$BUILD_WHEEL" ]]; then cibuildwheel --output-dir dist && ls -l dist; fi
+  - if [[ -n "$BUILD_SDIST" ]]; then python setup.py check sdist && ls -l dist; fi
 
 # Assuming you have installed the travis-ci CLI tool, after you
 # create the Github repo and add it to Travis, run the
