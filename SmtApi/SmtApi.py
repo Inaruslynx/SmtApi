@@ -4,9 +4,10 @@ Purpose: Provide interface with SmartMeterTexas.com. Provide a way to quickly pu
  """
 import datetime
 import re
-from typing import Mapping, Tuple, Optional
-from session import SmtApiSession
-from exceptions import handle_error_response
+from typing import Mapping, Optional, Tuple
+
+from exceptions.exceptions import handle_error_response
+from session.session import SmtApiSession
 
 
 class SmtApi(object):

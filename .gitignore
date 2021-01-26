@@ -131,3 +131,22 @@ dmypy.json
 
 # Other
 *.json
+test/pyvenv.cfg
+test/Scripts/activate
+test/Scripts/activate.bat
+test/Scripts/Activate.ps1
+test/Scripts/chardetect.exe
+test/Scripts/deactivate.bat
+test/Scripts/easy_install-3.9.exe
+test/Scripts/easy_install.exe
+test/Scripts/epylint.exe
+test/Scripts/isort-identify-imports.exe
+test/Scripts/isort.exe
+test/Scripts/pip.exe
+test/Scripts/pip3.9.exe
+test/Scripts/pip3.exe
+test/Scripts/pylint.exe
+test/Scripts/pyreverse.exe
+test/Scripts/python.exe
+test/Scripts/pythonw.exe
+test/Scripts/symilar.exe

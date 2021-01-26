@@ -1,5 +1,8 @@
 from typing import Tuple
+
 import requests
+
+
 class SmtApiSession(requests.Session):
 
     def __init__(self, *args, **kwargs):
