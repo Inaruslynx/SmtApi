@@ -28,5 +28,8 @@ deploy:
     secure: "PumPH4MOS96Wqqd28j4PAwXsQ0fz77pjQMVWWjVdNjsb5WcCl9xwkoUxWqQWAfwnMJFnXaR0+Q7vNi+EcfiAuWuWXW/55skXrvmimZqRiWTLDQegVUFJ7bID71GRnIkNxpW0h7TBQ0rkjyQOuGDPHb5VQ1sb9+3tT1oJEwqgtxTakm3407cAzzT25WzuETop8xeQ8zYrDZzPxN9mBidhIDL7MxNQH4zbW3DyORyRUcJLx8QXH2EOGe1rbbvMFr1VWiEOUvmLlJg/qG/7O1oaRmlOJuQtJplDD1tGu0G4aS1gd14QYLPSN8plH/xIVGBeiMHA/tLdIzS6Z9DMVgYKKu7ljZvKcT2en8PguCHu9F9GxucatCA9BcF1HCPOY5E2eVkhtL/YzpsxNp/fpq3AU+kRMntAtm4795F+F10pFPkVEg70xsfeKUlCmbrMo1oVxZ05KTWw72pPjOCBepTFKdS3YTvsTnyq/jeu/3YaW/ySmqtYGmWFzN7OdZaxdeFjP9J1JHYkz3/mu8BeeiaP0GtblfujHM5DxCZ/DjlrZq95onvODEqSQssubwrR4Il7RLbuKDF9KgM9GFpdR3XrfMDECz/mF//HE0dLQFdS9kY+rwvUMTBXwNkP9OqTeqxFR6L1LKyr8afbEuPeatG4VA7kH9XWa68zqJKky7Ylf6U="
   on:
     tags: true
-    repo: Inaruslynx/smtapi
+    repo: Inaruslynx/SmtApi
     python: 3.9
+    only:
+      - main
+      - ^v.......
