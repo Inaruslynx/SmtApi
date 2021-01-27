@@ -21,6 +21,7 @@ script:
 # following command to finish PyPI deployment setup:
 # $ travis encrypt --add deploy.password
 deploy:
+  skip_cleanup: true
   provider: pypi
   distributions: sdist bdist_wheel
   user: inaruslynx
